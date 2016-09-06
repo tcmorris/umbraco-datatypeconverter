@@ -1,0 +1,14 @@
+## Ignore Visual Studio files
+/.vs/config
+
+# NuGet Packages Directory
+packages/*
+!packages/repositories.config
+!packages/build/
+
+# Generated on build
+*/[Bb]in/
+*/[Oo]bj/
+
+# Project
+# add project specific ignores here
