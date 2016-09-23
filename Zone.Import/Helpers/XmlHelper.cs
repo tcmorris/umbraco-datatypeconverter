@@ -2,7 +2,7 @@
 {
     public static class XmlHelper
     {
-        public static bool IsValidXml(string input)
+        public static bool IsXmlWellFormed(string input)
         {
             if (!string.IsNullOrEmpty(input))
             {

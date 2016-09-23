@@ -29,7 +29,7 @@ namespace Zone.Import.Services
         public ConversionResult ConvertContent(IDataTypeConverter converter, string input)
         {
             // if it doesn't look like XML, then just return null
-            if (!XmlHelper.IsValidXml(input))
+            if (!XmlHelper.IsXmlWellFormed(input))
             {
                 return null;
             }

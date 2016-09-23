@@ -109,7 +109,7 @@ namespace Zone.Website.App_Plugins.ZoneImporter
             // get doc types using data type
             _affectedDocTypes = new List<IContentType>();
             var parentDocTypes = new List<IContentType>();
-            parentDocTypes.AddRange(Services.ContentTypeService.GetAllContentTypes().Where(x => x.PropertyTypes.Where(y => y.DataTypeDefinitionId == dataTypeId).Any()));
+            parentDocTypes.AddRange(Services.ContentTypeService.GetAllContentTypes().Where(x => x.PropertyTypes.Any(y => y.DataTypeDefinitionId == dataTypeId)));
 
             // add their children
             foreach (var parentDocType in parentDocTypes)
@@ -153,10 +153,7 @@ namespace Zone.Website.App_Plugins.ZoneImporter
 
             // find a converter that supports that alias
             var converter = _importService.GetConverter(dataType.PropertyEditorAlias);
-            if (converter == null)
-                return null;
-
-            return converter;
+            return converter == null ? null : converter;
         }
 
         /// <summary>
