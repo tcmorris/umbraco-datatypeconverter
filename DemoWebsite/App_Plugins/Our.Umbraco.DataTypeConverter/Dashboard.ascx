@@ -1,7 +1,7 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Dashboard.ascx.cs" Inherits="Zone.Website.App_Plugins.ZoneImporter.Dashboard" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Dashboard.ascx.cs" Inherits="Our.Umbraco.DataTypeConverter.Dashboard" %>
 
-<div id="zoneImporterDashboard">
-    <h2>Zone Importer</h2>
+<div id="dataTypeConverterDashboard">
+    <h2>DataType Converter</h2>
     <p>
         This will allow you to overwrite the stored values within the database for property data (cmsPropertyData).
         This is particularly useful when you have old data that may not be compatible with the latest version of Umbraco, or you want to switch to a different format.

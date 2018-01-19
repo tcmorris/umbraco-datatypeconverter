@@ -2,25 +2,13 @@
 using System.Xml;
 using System.Collections.Generic;
 
-namespace Zone.Import.Converters
+namespace Our.Umbraco.DataTypeConverter.Converters
 {
     public class MultiNodeTreePickerConverter : IDataTypeConverter
     {
-        public string Name
-        {
-            get
-            {
-                return "MNTP Converter (XML to CSV)";
-            }
-        }
+        public string Name => "MNTP Converter (XML to CSV)";
 
-        public string PropertyEditorAlias
-        {
-            get
-            {
-                return "Umbraco.MultiNodeTreePicker";
-            }
-        }
+        public string PropertyEditorAlias => "Umbraco.MultiNodeTreePicker";
 
         /// <summary>
         /// Converts from XML to CSV

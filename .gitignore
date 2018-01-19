@@ -12,3 +12,4 @@ packages/*
 
 # Project
 # add project specific ignores here
+.vs/

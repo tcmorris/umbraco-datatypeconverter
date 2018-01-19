@@ -7,8 +7,8 @@
     <ProjectGuid>{CFF8BF62-7042-4EC0-83A1-3B0EB3184998}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Zone.Import</RootNamespace>
-    <AssemblyName>Zone.Import</AssemblyName>
+    <RootNamespace>Our.Umbraco.DataTypeConverter</RootNamespace>
+    <AssemblyName>Our.Umbraco.DataTypeConverter</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -35,6 +35,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -44,8 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Config\IImportConfig.cs" />
-    <Compile Include="Config\ImportConfig.cs" />
+    <Compile Include="Config\DataTypeConverterConfig.cs" />
     <Compile Include="Converters\IDataTypeConverter.cs" />
     <Compile Include="Converters\MultiNodeTreePickerConverter.cs" />
     <Compile Include="Converters\UrlPickerConverter.cs" />

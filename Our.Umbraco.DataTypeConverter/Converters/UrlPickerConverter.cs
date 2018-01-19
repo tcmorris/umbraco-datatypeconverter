@@ -1,27 +1,15 @@
 ﻿using System;
 using System.Xml;
 using Newtonsoft.Json;
-using Zone.Import.Models;
+using Our.Umbraco.DataTypeConverter.Models;
 
-namespace Zone.Import.Converters
+namespace Our.Umbraco.DataTypeConverter.Converters
 {
     public class UrlPickerConverter : IDataTypeConverter
     {
-        public string Name
-        {
-            get
-            {
-                return "URL Picker Converter (XML to JSON)";
-            }
-        }
+        public string Name => "URL Picker Converter (XML to JSON)";
 
-        public string PropertyEditorAlias
-        {
-            get
-            {
-                return "Imulus.UrlPicker";
-            }
-        }
+        public string PropertyEditorAlias => "Imulus.UrlPicker";
 
         /// <summary>
         /// Converts from XML to JSON

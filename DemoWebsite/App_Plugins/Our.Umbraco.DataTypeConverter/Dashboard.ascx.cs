@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Web;
-using System.Web.Hosting;
 using System.Web.UI.WebControls;
 using log4net;
 using Umbraco.Core.Models;
-using Zone.Import.Config;
-using Zone.Import.Converters;
-using Zone.Import.Services;
+using Umbraco.Web.UI.Controls;
+using Our.Umbraco.DataTypeConverter.Config;
+using Our.Umbraco.DataTypeConverter.Converters;
+using Our.Umbraco.DataTypeConverter.Services;
 
-namespace Zone.Website.App_Plugins.ZoneImporter
+namespace Our.Umbraco.DataTypeConverter
 {
     public class AffectedContent
     {
@@ -21,32 +20,20 @@ namespace Zone.Website.App_Plugins.ZoneImporter
         public PropertyType PropertyType { get; set; }
     }
 
-    public partial class Dashboard : Umbraco.Web.UI.Controls.UmbracoUserControl
+    public partial class Dashboard : UmbracoUserControl
     {
-        private IImportService _importService;
-        private IImportConfig _importConfig;
+        private DataTypeConverterConfig _importConfig;
+        private IImportService _importService;      
         private ILog _logger;
-        private int _count = 0;
+        private int _count;
 
         private List<IContentType> _affectedDocTypes;
         private List<AffectedContent> _affectedContent;
         private IDataTypeConverter _converter;
 
-        public int DataTypeId
-        {
-            get
-            {
-                return int.Parse(ddlDataTypes.SelectedValue);
-            }
-        }
+        public int DataTypeId => int.Parse(ddlDataTypes.SelectedValue);
 
-        public int DocTypeId
-        {
-            get
-            {
-                return int.Parse(ddlDocTypes.SelectedValue);
-            }
-        }
+        public int DocTypeId => int.Parse(ddlDocTypes.SelectedValue);
 
         protected override void OnInit(EventArgs e)
         {
@@ -63,7 +50,7 @@ namespace Zone.Website.App_Plugins.ZoneImporter
         protected void Page_Load(object sender, EventArgs e)
         {
             // set up import service
-            _importConfig = new ImportConfig(Path.Combine(HostingEnvironment.MapPath("/"), "config/importService.config"));
+            _importConfig = new DataTypeConverterConfig();
             _importService = new ImportService();         
             _converter = FindValidConverter(DataTypeId);
             _logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
@@ -153,7 +140,7 @@ namespace Zone.Website.App_Plugins.ZoneImporter
 
             // find a converter that supports that alias
             var converter = _importService.GetConverter(dataType.PropertyEditorAlias);
-            return converter == null ? null : converter;
+            return converter;
         }
 
         /// <summary>
@@ -202,7 +189,7 @@ namespace Zone.Website.App_Plugins.ZoneImporter
             // crude way of storing this data
             HttpContext.Current.Session["affectedContent"] = _affectedContent;
 
-            DisplayAlert(string.Format("Estimated {0} properties to update. Will use {1}", _affectedContent.Count, _converter.Name), "alert alert-info");
+            DisplayAlert($"Estimated {_affectedContent.Count} properties to update. Will use {_converter.Name}", "alert alert-info");
             btnConvert.Enabled = true;
         }
 
@@ -223,7 +210,7 @@ namespace Zone.Website.App_Plugins.ZoneImporter
                 DisplayAlert("No valid data for the session.", "alert alert-warning");
             }
 
-            _logger.Info(string.Format("Begin conversion of {0}", ddlDataTypes.SelectedItem.Text));
+            _logger.Info($"Begin conversion of {ddlDataTypes.SelectedItem.Text}");
             _count = 0;
 
             try
@@ -245,16 +232,16 @@ namespace Zone.Website.App_Plugins.ZoneImporter
                         data.Content.SetValue(data.PropertyType.Alias, result.NewValue);
                         Services.ContentService.Save(data.Content);
 
-                        _logger.Debug(string.Format("Converted {0} from {1} to {2} on page {3}", data.PropertyType.Alias, result.OldValue, result.NewValue, data.Content.Id));
+                        _logger.Debug(
+                            $"Converted {data.PropertyType.Alias} from {result.OldValue} to {result.NewValue} on page {data.Content.Id}");
                         _count++;
                     }
                 }
 
                 // add some logging
-                _logger.Info(string.Format("Finished {0} conversion(s) out of possible {1} values. Doc types used: {2}", 
-                    _count, 
-                    _affectedContent.Count, 
-                    string.Join(", ", _affectedContent.Select(x => x.Content.ContentType.Name).Distinct().ToList())));
+                var docTypesUsed = string.Join(", ", _affectedContent.Select(x => x.Content.ContentType.Name).Distinct().ToList());
+                _logger.Info(
+                    $"Finished {_count} conversion(s) out of possible {_affectedContent.Count} values. Doc types used: {docTypesUsed}");
 
                 // republish
                 if (_importConfig.ShouldRepublish)
@@ -265,16 +252,13 @@ namespace Zone.Website.App_Plugins.ZoneImporter
                 // hoorah!
                 stopWatch.Stop();
                 DisplayAlert(
-                    string.Format("That seemed to work! Converted {0} out of possible {1} values in {2}. Please check your content to confirm.", 
-                    _count, 
-                    _affectedContent.Count,
-                    stopWatch.Elapsed), 
+                    $"That seemed to work! Converted {_count} out of possible {_affectedContent.Count} values in {stopWatch.Elapsed}. Please check your content to confirm.", 
                     "alert alert-success");
             }
             catch (Exception ex)
             {
                 // log error
-                _logger.Error(string.Format("Exception: {0}", ex.Message), ex);
+                _logger.Error($"Exception: {ex.Message}", ex);
                 DisplayAlert("Hmm, that didn't seem to work. Please try again.", "alert alert-error");
             }
         }

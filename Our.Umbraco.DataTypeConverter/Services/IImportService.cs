@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using Zone.Import.Converters;
-using Zone.Import.Models;
+using Our.Umbraco.DataTypeConverter.Converters;
+using Our.Umbraco.DataTypeConverter.Models;
 
-namespace Zone.Import.Services
+namespace Our.Umbraco.DataTypeConverter.Services
 {
     public interface IImportService
     {

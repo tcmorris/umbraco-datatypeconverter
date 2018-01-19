@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Zone.Import.Converters;
-using Zone.Import.Helpers;
-using Zone.Import.Models;
+using Our.Umbraco.DataTypeConverter.Converters;
+using Our.Umbraco.DataTypeConverter.Helpers;
+using Our.Umbraco.DataTypeConverter.Models;
 
-namespace Zone.Import.Services
+namespace Our.Umbraco.DataTypeConverter.Services
 {
     public class ImportService : IImportService
     {

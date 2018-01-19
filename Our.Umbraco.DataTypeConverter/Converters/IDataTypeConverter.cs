@@ -1,4 +1,4 @@
-﻿namespace Zone.Import.Converters
+﻿namespace Our.Umbraco.DataTypeConverter.Converters
 {
     public interface IDataTypeConverter
     {

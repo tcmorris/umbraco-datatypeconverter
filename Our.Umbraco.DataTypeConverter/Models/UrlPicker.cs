@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-namespace Zone.Import.Models
+namespace Our.Umbraco.DataTypeConverter.Models
 {
     //{
     //  "type": "content",

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Zone.Website.App_Plugins.ZoneImporter {
+namespace Our.Umbraco.DataTypeConverter {
     
     
     public partial class Dashboard {

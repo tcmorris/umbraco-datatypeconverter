@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zone.Import", "Zone.Import\Zone.Import.csproj", "{CFF8BF62-7042-4EC0-83A1-3B0EB3184998}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Our.Umbraco.DataTypeConverter", "Our.Umbraco.DataTypeConverter\Our.Umbraco.DataTypeConverter.csproj", "{CFF8BF62-7042-4EC0-83A1-3B0EB3184998}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zone.Website", "Zone.Website\Zone.Website.csproj", "{E82BB449-F1F2-4991-A60E-9EFDE5D831CE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoWebsite", "DemoWebsite\DemoWebsite.csproj", "{E82BB449-F1F2-4991-A60E-9EFDE5D831CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,5 +24,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0107C3F0-CB09-475B-93D2-62364DC93183}
 	EndGlobalSection
 EndGlobal

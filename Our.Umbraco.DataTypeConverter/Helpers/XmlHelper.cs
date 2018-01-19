@@ -1,4 +1,4 @@
-﻿namespace Zone.Import.Helpers
+﻿namespace Our.Umbraco.DataTypeConverter.Helpers
 {
     public static class XmlHelper
     {

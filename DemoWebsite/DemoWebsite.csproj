@@ -13,8 +13,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Zone.Website</RootNamespace>
-    <AssemblyName>Zone.Website</AssemblyName>
+    <RootNamespace>DemoWebsite</RootNamespace>
+    <AssemblyName>DemoWebsite</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -24,6 +24,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -281,6 +282,7 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="config\importService.config" />
+    <Content Include="config\Dashboard.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -289,22 +291,22 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Plugins\ZoneImporter\Dashboard.ascx" />
+    <Content Include="App_Plugins\Our.Umbraco.DataTypeConverter\Dashboard.ascx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Plugins\ZoneImporter\Dashboard.ascx.cs">
+    <Compile Include="App_Plugins\Our.Umbraco.DataTypeConverter\Dashboard.ascx.cs">
       <DependentUpon>Dashboard.ascx</DependentUpon>
     </Compile>
-    <Compile Include="App_Plugins\ZoneImporter\Dashboard.ascx.designer.cs">
+    <Compile Include="App_Plugins\Our.Umbraco.DataTypeConverter\Dashboard.ascx.designer.cs">
       <DependentUpon>Dashboard.ascx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Zone.Import\Zone.Import.csproj">
+    <ProjectReference Include="..\Our.Umbraco.DataTypeConverter\Our.Umbraco.DataTypeConverter.csproj">
       <Project>{cff8bf62-7042-4ec0-83a1-3b0eb3184998}</Project>
-      <Name>Zone.Import</Name>
+      <Name>Our.Umbraco.DataTypeConverter</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
